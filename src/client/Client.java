@@ -6,7 +6,8 @@ import java.awt.*;
 public class Client extends JFrame
 {
     public JPanel dataPanel;
-    public JTable volunteers;
+    private JScrollBar scrollBar;
+    JTable volunteers;
 
     public Client()
     {
@@ -17,6 +18,8 @@ public class Client extends JFrame
     {
         var menuBar = new MainMenu();
         setJMenuBar(menuBar);
+
+        dataPanel  = new VolunteerDataPanel(volunteers);
 
         setTitle("Freiwilligen Verwaltung");
         setSize(500, 300);

@@ -1,0 +1,26 @@
+INSERT INTO `volunteers`.`Person`
+(`PersonID`,
+`LastName`,
+`FirstName`,
+`Address`,
+`City`,
+`EMail`,
+`Birthday`,
+`EntryDate`,
+`InsDate`,
+`InsBy`,
+`UpdDate`,
+`UpdBy`)
+VALUES
+(1,
+'Mustermann',
+'Max',
+'Musterstraße 1',
+'Berlin',
+'max@mustermann.de',
+'1984-7-04',
+'2008-7-04',
+'2008-7-04',
+'admin',
+'2008-7-04',
+'admin');

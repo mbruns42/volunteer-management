@@ -23,7 +23,7 @@ public class MainMenu extends JMenuBar {
         viewMenu = new JMenu("Ansicht");
         viewMenu.setMnemonic(KeyEvent.VK_A);
 
-        var exitMenuItem = new JMenuItem("Beenden", exitIcon);
+        JMenuItem exitMenuItem = new JMenuItem("Beenden", exitIcon);
         exitMenuItem.setMnemonic(KeyEvent.VK_E);
         exitMenuItem.setToolTipText("Anwendung beenden");
         exitMenuItem.addActionListener((event) -> System.exit(0));

@@ -1,7 +1,7 @@
 package client;
 
-import client.database.DbConnection;
-import client.database.DbTables;
+import database.DbConnection;
+import database.DbTables;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

@@ -16,7 +16,7 @@ public class Client extends JFrame
 
     private void initUI()
     {
-        var menuBar = new MainMenu();
+        JMenuBar menuBar = new MainMenu();
         setJMenuBar(menuBar);
 
         dataPanel  = new VolunteerDataPanel(volunteers);
@@ -31,7 +31,7 @@ public class Client extends JFrame
     public static void main(String[] args)
     {
         EventQueue.invokeLater(() -> {
-            var ex = new Client();
+            JFrame ex = new Client();
             ex.setVisible(true);
         });
     }

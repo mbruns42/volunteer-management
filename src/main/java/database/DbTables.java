@@ -1,4 +1,4 @@
-package client.database;
+package database;
 
 import javax.swing.table.DefaultTableModel;
 

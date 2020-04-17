@@ -5,12 +5,14 @@ import database.DbTables;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
+import java.util.logging.Logger;
+
+//TODO not sure whether this still needs to be a JPanel
 public class VolunteerDataPanel extends JPanel
 {
+    private final static Logger LOGGER = Logger.getLogger(VolunteerDataPanel.class.getName());
 
     DefaultTableModel model;
     JTable volunteers;
@@ -25,15 +27,15 @@ public class VolunteerDataPanel extends JPanel
             Connection con = DbConnection.getDbConnection();
             PreparedStatement pstm = con.prepareStatement("SELECT * FROM Person");
             ResultSet Rs = pstm.executeQuery();
-            //TODO Add logger
-            System.out.println("Select ausgeführt");
+            LOGGER.info("Executed database query for volunteers");
             while(Rs.next()){
                 model.addRow(new Object[]{Rs.getInt(1), Rs.getString(2),Rs.getString(3),Rs.getString(4)});
-                System.out.println("Daten gefunden");
+                LOGGER.info("Found data row for volunteers");
             }
-        } catch (Exception e) {
-            //TODO Add logger
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            LOGGER.info("Error during database query for volunteers. Error: " + e.getMessage());
+            //TODO Show info to user
+            //TODO Do we need to shut down here?
         }
     }
 

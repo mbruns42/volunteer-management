@@ -2,10 +2,11 @@ package client;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.util.logging.Logger;
 
 public class MainMenu extends JMenuBar {
 
-    public ImageIcon exitIcon = new ImageIcon("src/resources/exit.png");
+    private final static Logger LOGGER = Logger.getLogger(MainMenu.class.getName());
 
     public JMenu viewMenu;
     public JMenu editMenu;
@@ -20,10 +21,12 @@ public class MainMenu extends JMenuBar {
 
     private void initViewMenu()
     {
+        LOGGER.info("Initializing Main Menu");
+
         viewMenu = new JMenu("Ansicht");
         viewMenu.setMnemonic(KeyEvent.VK_A);
 
-        JMenuItem exitMenuItem = new JMenuItem("Beenden", exitIcon);
+        JMenuItem exitMenuItem = new JMenuItem("Beenden");
         exitMenuItem.setMnemonic(KeyEvent.VK_E);
         exitMenuItem.setToolTipText("Anwendung beenden");
         exitMenuItem.addActionListener((event) -> System.exit(0));

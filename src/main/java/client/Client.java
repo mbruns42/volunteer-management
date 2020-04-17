@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class Client extends JFrame
 {
-    public VolunteerDataPanel dataPanel;
-    JTable volunteers;
+
+    private CardLayout cardLayout;
 
     public Client()
     {
@@ -15,20 +15,28 @@ public class Client extends JFrame
 
     private void initUI()
     {
-        JMenuBar menuBar = new MainMenu();
-        setJMenuBar(menuBar);
-
-        dataPanel = new VolunteerDataPanel();
-        volunteers = dataPanel.getVolunteers();
-
-        JScrollPane scrollPane = new JScrollPane(volunteers);
-        add(scrollPane);
-
         setTitle("Freiwilligen Verwaltung");
-        setSize(500, 300);
+        setSize(1000, 500);
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        cardLayout = new CardLayout();
+        JPanel cardPanel = new JPanel(cardLayout);
+        add(cardPanel);
+
+        //Add view for persons
+        VolunteerDataView volunteerDataView = new VolunteerDataView();
+        cardPanel.add(volunteerDataView.getView(), "Personen");
+
+        //Add view for blue panel
+        JPanel startPageView = new JPanel();
+        startPageView.setBackground(Color.BLUE);
+        cardPanel.add(startPageView, "Startseite");
+
+        //Allow Main Menu to switch between menus
+        MainMenu menuBar = new MainMenu(cardLayout, cardPanel);
+        setJMenuBar(menuBar);
     }
 
     public static void main(String[] args)

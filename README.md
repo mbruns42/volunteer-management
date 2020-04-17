@@ -4,9 +4,10 @@ Basic tasks:
 - [x] Install database 
 - [x] Create database scheme
 - [x] Create simple table view for volunteer data
-- [ ] Add another view and allow switching views
+- [x] Allow switching views
 - [ ] Get dummy data in clients format 
 - [ ] Create data import
+- [ ] Securely store database login
 - [ ] Allow data modification for volunteers
 - [ ] Create automatic export of data after update
 - [ ] Create start page with most commonly needed info (upcoming birthdays and anniversary)

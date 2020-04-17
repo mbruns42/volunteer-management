@@ -12,9 +12,10 @@ import java.sql.ResultSet;
 public class VolunteerDataPanel extends JPanel
 {
 
-    DefaultTableModel model ;
+    DefaultTableModel model;
+    JTable volunteers;
 
-    public VolunteerDataPanel(JTable volunteers)
+    public VolunteerDataPanel()
     {
         DbTables dbTables = new DbTables();
         model = dbTables.getVolunteerDbModel();
@@ -24,13 +25,19 @@ public class VolunteerDataPanel extends JPanel
             Connection con = DbConnection.getDbConnection();
             PreparedStatement pstm = con.prepareStatement("SELECT * FROM Person");
             ResultSet Rs = pstm.executeQuery();
+            //TODO Add logger
+            System.out.println("Select ausgeführt");
             while(Rs.next()){
                 model.addRow(new Object[]{Rs.getInt(1), Rs.getString(2),Rs.getString(3),Rs.getString(4)});
+                System.out.println("Daten gefunden");
             }
         } catch (Exception e) {
-            //TODO
+            //TODO Add logger
             System.out.println(e.getMessage());
         }
     }
 
+    public JTable getVolunteers() {
+        return volunteers;
+    }
 }

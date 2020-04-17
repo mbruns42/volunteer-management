@@ -1,9 +1,11 @@
 # volunteer-management
 
 Basic tasks:
-- [ ] Install database 
-- [ ] Create database scheme
-- [ ] Create simple table view for volunteer data
+- [x] Install database 
+- [x] Create database scheme
+- [x] Create simple table view for volunteer data
+- [ ] Add another view and allow switching views
+- [ ] Get dummy data in clients format 
 - [ ] Create data import
 - [ ] Allow data modification for volunteers
 - [ ] Create automatic export of data after update

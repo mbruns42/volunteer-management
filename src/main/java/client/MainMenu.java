@@ -9,8 +9,8 @@ public class MainMenu extends JMenuBar {
 
     private final static Logger LOGGER = Logger.getLogger(MainMenu.class.getName());
 
-    private CardLayout cardLayout;
-    private JPanel cardPanel;
+    private final CardLayout cardLayout;
+    private final JPanel cardPanel;
     public JMenu viewMenu;
     public JMenu editMenu;
     public JMenu optionMenu;

@@ -6,7 +6,7 @@ public class DbTables {
 
     //TODO: Should the Model itself be static?
 
-    DefaultTableModel volunteerDbModel = new DefaultTableModel();
+    final DefaultTableModel volunteerDbModel = new DefaultTableModel();
     public static final String[] personTableCols =  {
             "PersonID",
             "LastName ",

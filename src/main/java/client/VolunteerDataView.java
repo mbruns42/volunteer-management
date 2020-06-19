@@ -13,9 +13,9 @@ public class VolunteerDataView
 {
     private final static Logger LOGGER = Logger.getLogger(VolunteerDataView.class.getName());
 
-    DbTables dbTables = new DbTables();
-    DefaultTableModel model = dbTables.getVolunteerDbModel();
-    JTable volunteers = new JTable(model);
+    final DbTables dbTables = new DbTables();
+    final DefaultTableModel model = dbTables.getVolunteerDbModel();
+    final JTable volunteers = new JTable(model);
 
     public void refresh()
     {

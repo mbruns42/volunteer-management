@@ -12,22 +12,18 @@ public class DbConnection
     public static Connection con;
     public static final String DB_URL = "jdbc:mariadb://localhost/volunteers";
 
+    public static void initDbConnection(String username, char[] password) throws SQLException
+    {
+
+        LOGGER.info("Trying to connect to database");
+        con = DriverManager.getConnection(DB_URL, username, new String(password));
+        LOGGER.info("Successfully connected to database");
+
+    }
+
     public static Connection getDbConnection()
     {
-        if (con == null ) {
-            try
-            {
-                LOGGER.info("Trying to connect to database");
-                //TODO change storage of login data
-                con = DriverManager.getConnection(DB_URL, "test", "testtest");
-            }
-            catch (SQLException e)
-            {
-                LOGGER.severe("Could not connect to database. Error:" + e.getMessage());
-                //TODO Show exception to user before exciting
-                System.exit(1);
-            }
-        }
         return con;
     }
+
 }

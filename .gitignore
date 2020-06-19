@@ -2,6 +2,7 @@
 /.idea
 /volunteer-management.iml
 /out/
+/src/main/java.iml
 
 # Ignore Gradle project-specific cache directory
 .gradle/

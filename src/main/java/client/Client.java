@@ -84,7 +84,7 @@ public class Client extends JFrame
         cardPanel.add(startPageView, "Startseite");
 
         //Allow Main Menu to switch between menus
-        MainMenu menuBar = new MainMenu(cardLayout, cardPanel);
+        MainMenu menuBar = new MainMenu(cardLayout, cardPanel, this);
         setJMenuBar(menuBar);
     }
 

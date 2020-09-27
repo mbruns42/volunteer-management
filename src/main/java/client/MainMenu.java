@@ -1,5 +1,7 @@
 package client;
 
+import csv.CsvImportActionListener;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -9,16 +11,19 @@ public class MainMenu extends JMenuBar {
 
     private final static Logger LOGGER = Logger.getLogger(MainMenu.class.getName());
 
+    private final JFrame client;
     private final CardLayout cardLayout;
     private final JPanel cardPanel;
     public JMenu viewMenu;
     public JMenu editMenu;
     public JMenu optionMenu;
 
-    public MainMenu(CardLayout cardLayout, JPanel cardPanel)
+    public MainMenu(CardLayout cardLayout, JPanel cardPanel, JFrame client)
     {
+        this.client = client;
         this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
+
         initViewMenu();
         initEditMenu();
         initOptionMenu();
@@ -56,6 +61,14 @@ public class MainMenu extends JMenuBar {
     {
         editMenu = new JMenu("Bearbeiten");
         editMenu.setMnemonic(KeyEvent.VK_B);
+
+        JMenuItem csvImpMenuItem = new JMenuItem("CSV-Daten importieren");
+        csvImpMenuItem.setMnemonic(KeyEvent.VK_P);
+        csvImpMenuItem.setToolTipText("Daten aus einer CSV-Datei importieren");
+        csvImpMenuItem.addActionListener((event) -> cardLayout.show(cardPanel, "Personen"));
+        csvImpMenuItem.addActionListener(new CsvImportActionListener(client));
+        editMenu.add(csvImpMenuItem);
+
         this.add(editMenu);
     }
 

@@ -20,6 +20,11 @@ public final class CsvImporter {
 
             // read the first line from the text file
             String line = br.readLine();
+            if (line != null)
+            {
+                // skip header line
+                line = br.readLine();
+            }
 
             // loop until all lines are read
             while (line != null) {
@@ -27,8 +32,11 @@ public final class CsvImporter {
                 // use string.split to load a string array with the values from
                 // each line of the file, using a semicolon as the delimiter
                 String[] attributes = line.split(";");
-
-                createVolunteer(attributes);
+                LOGGER.info(attributes.length + ">=" + CsvMappingConstants.volunteerCsv.length);
+                if (attributes.length >= CsvMappingConstants.volunteerCsv.length)
+                {
+                    createVolunteer(attributes);
+                }
 
                 // read next line before looping
                 // if end of file reached, line would be null

@@ -9,3 +9,6 @@
 
 # Ignore Gradle build output directory
 build/
+
+# Do not commit resources
+/src/main/resources/

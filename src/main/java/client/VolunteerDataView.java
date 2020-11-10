@@ -22,12 +22,21 @@ public class VolunteerDataView
         try
         {
             Connection con = DbConnection.getDbConnection();
-            PreparedStatement pstm = con.prepareStatement("SELECT * FROM Person");
-            ResultSet Rs = pstm.executeQuery();
+            PreparedStatement pstm = con.prepareStatement("SELECT " + dbTables.getAllPersonCols() + " FROM Person");
+            ResultSet resultSet = pstm.executeQuery();
             LOGGER.info("Executed database query for volunteers");
-            while(Rs.next()){
-                model.addRow(new Object[]{Rs.getInt(1), Rs.getString(2),Rs.getString(3),Rs.getString(4)});
-                LOGGER.info("Found data row for volunteers");
+
+            ResultSetMetaData md = resultSet.getMetaData();
+            int columns = md.getColumnCount();
+
+            while(resultSet.next())
+            {
+                Object[] dataRow = new Object[columns];
+                for (int i = 1; i <= columns; i++)
+                {
+                    dataRow[i-1] = resultSet.getObject(i) ;
+                }
+                model.addRow(dataRow);
             }
         } catch (SQLException e)
         {

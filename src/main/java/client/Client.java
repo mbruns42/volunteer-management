@@ -65,7 +65,7 @@ public class Client extends JFrame
     private void initUI()
     {
         setTitle("Freiwilligen Verwaltung");
-        setSize(1000, 500);
+        setSize(1200, 600);
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 
 public class CsvMappingConstants {
 
-    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     public static final String[] volunteerCsv = {
             "state",
             "salutation",
@@ -31,4 +31,18 @@ public class CsvMappingConstants {
             "qualification",
             "entryDate"
     };
+
+    public static String getAllCsvCols()
+    {
+        StringBuilder allCols = new StringBuilder();
+        for (String col : volunteerCsv){
+            allCols.append(col).append(",");
+        }
+        return allCols.substring(0, allCols.length()-1);
+    }
+
+    public static int getColNum()
+    {
+        return volunteerCsv.length;
+    }
 }

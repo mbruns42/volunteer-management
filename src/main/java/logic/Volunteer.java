@@ -1,5 +1,6 @@
 package logic;
 
+import client.Client;
 import csv.CsvMappingConstants;
 import database.DbConnection;
 
@@ -10,12 +11,8 @@ import java.util.logging.Logger;
 public class Volunteer {
 
     private final static Logger LOGGER = Logger.getLogger(Volunteer.class.getName());
-    private final static String INSERT_VOLUNTEER = "INSERT INTO `volunteers`.`Person`\n" +
-            "(`LastName`,`FirstName`,`Address`,`City`,\n" +
-            "`EMail`,`Birthday`,`EntryDate`,\n" +
-            "`InsDate`,`InsBy`,`UpdDate`,`UpdBy`) \n" +
-            "VALUES (?, ?, ?, ?, ?, ?, ?,\n" +
-            "CURRENT_DATE,'CSVimport',CURRENT_DATE,'CSVimport')";
+    private final static String INSERT_VOLUNTEER = buildInsertStmt();
+
 
     private String state = "undef";
     private String salutation = "";
@@ -75,13 +72,48 @@ public class Volunteer {
         try {
             Connection con = DbConnection.getDbConnection();
             PreparedStatement pstm = con.prepareStatement(INSERT_VOLUNTEER);
-            pstm.setString(1, lastName);
-            pstm.setString(2, firstName);
-            pstm.setString(3, address);
-            pstm.setString(4, city);
-            pstm.setString(5, eMail);
-            pstm.setDate(6, birthday);
-            pstm.setDate(7, entryDate);
+            pstm.setString(1, state);
+            pstm.setString(2, salutation);
+            pstm.setString(3, firstName);
+            pstm.setString(4, lastName);
+            pstm.setDate(5, birthday);
+            pstm.setString(6, address);
+            pstm.setInt(7, postCode);
+            pstm.setString(8, city);
+            pstm.setString(9, phoneNumber);
+            pstm.setString(10, phoneNumberMobile);
+            pstm.setString(11, eMail);
+
+            pstm.setBoolean(12, HYIC);
+            pstm.setBoolean(13, HYB);
+            pstm.setBoolean(14, HYW);
+
+            pstm.setBoolean(15, MoV);
+            pstm.setBoolean(16, MoN);
+            pstm.setBoolean(17, DiVo);
+            pstm.setBoolean(18, DiN);
+            pstm.setBoolean(19, MiV);
+            pstm.setBoolean(20, MiN);
+            pstm.setBoolean(21, DoV);
+            pstm.setBoolean(22, DoN);
+            pstm.setBoolean(23, FrV);
+            pstm.setBoolean(24, FrN);
+            pstm.setBoolean(25, SaV);
+            pstm.setBoolean(26, SaN);
+            pstm.setBoolean(27, SoV);
+            pstm.setBoolean(28, SoN);
+
+            pstm.setString(29, workArea);
+            pstm.setString(30, workArea2);
+            pstm.setString(31, workArea3);
+            pstm.setString(32, workType);
+            pstm.setString(33, SPR);
+            pstm.setString(34, notes);
+            pstm.setString(35, qualification);
+
+            pstm.setDate(36, entryDate);
+            pstm.setString(37, Client.username);
+            pstm.setString(38, Client.username);
 
 
             LOGGER.info("Executing insert for volunteer: " +pstm.toString());
@@ -221,4 +253,20 @@ public class Volunteer {
             e.printStackTrace();
         }
     }
+
+    private static String buildInsertStmt()
+    {
+        StringBuilder stmt;
+        stmt = new StringBuilder("INSERT INTO volunteers.Person ( \n");
+        stmt.append(CsvMappingConstants.getAllCsvCols());
+        stmt.append(",InsDate,InsBy,UpdDate,UpdBy) VALUES (\n");
+        for (int i = 0; i< CsvMappingConstants.getColNum(); i++)
+        {
+            stmt.append("?,");
+        }
+        stmt.append("CURRENT_DATE,CONCAT('CSVimport/',?),CURRENT_DATE,CONCAT('CSVimport/',?))");
+        return stmt.toString();
+    }
 }
+
+

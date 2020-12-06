@@ -21,7 +21,7 @@ public final class DbTables {
             "HYIC", /* Hygieneinformation Corona neu seit 20.05.20 */
             "HYB", /* Hygienebelehrung Gesundheitsamt */
             "HYW", /* Hygienewiederholung im Gast-Haus_Januar */
-           /* "MoV",
+            "MoV",
             "MoN",
             "DiVo",
             "DiN",
@@ -40,7 +40,7 @@ public final class DbTables {
             "workArea3",
             "workArea4",
             "workType",
-            "SPR",*/
+            "SPR",
             "Notes",
             "Qualification",
             "EntryDate",

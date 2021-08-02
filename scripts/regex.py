@@ -10,7 +10,7 @@ with open(file_name) as f:
         print ('    ' + line.rstrip())
         
         #Daten mit Punkt
-        line = re.sub(';(\d\d).(\d\d).(\d\d\d\d)', r';\2/\1/\3', line)
+        line = re.sub(';(\d\d)\.(\d\d)\.(\d\d\d\d)', r';\2/\1/\3', line)
         
         #Unvollstaendige Daten
         line = re.sub(';(\d\d)/(\d)/(\d\d\d\d)', r';\1/0\2/\3', line)
@@ -18,6 +18,7 @@ with open(file_name) as f:
         line = re.sub(';(\d)/(\d\d)/(\d\d\d\d)', r';0\1/\2/\3', line)
         line = re.sub(';(\d);', r';01/01/200\1;', line)
         line = re.sub(';(\d\d);', r';01/01/20\1;', line)
+        line = re.sub(';(\d)/(\d\d);', r';0\1/01/20\2;', line)
         line = re.sub(';(\d\d);', r';01/01/20\1;', line)
         line = re.sub(';(\d\d)/(\d\d);', r';\1/01/20\2;', line)
         
